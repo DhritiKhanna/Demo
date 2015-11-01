@@ -1,0 +1,29 @@
+
+All the test cases for this assignment appears in file TestCases.java.
+
+Part 1: Verify two properties using aspects.
+
+Property 1: In a stack, before calling pop(), the developer must check if empty() has been called. Let us call this property FailSafePop.
+
+Test case 1: First test case (see the comment 'Test case 1 for property 'FailSafePop'' in source) shows that without aspect, the program should work fine when there are enough elements to pop.
+However, it is a violation of the property and this violation is caught by the implemented aspect (in file FailSafePop.aj) and it throws EmptyNotCalledBeforePop exception.
+
+Test case 2: Second test case (see the comment 'Test case 2 for property 'FailSafePop'' in source) shows that without aspect, the program should fail. 
+This should happen because pop() is called more number of times than there are elements in the stack. Hence the exception: EmptyStackException. But with aspects, instead of EmptyStackException, 
+EmptyNotCalledBeforePop gets thrown. Hence, the damage is caught before it actually occurred.
+ 
+Property 2: There should not be any invocation of read() after the instance of Reader has been closed, let us call this property ReaderClose.
+
+Test case 1: First test case (see the comment 'Test Case 1 for Property 'ReaderClose'' in source) shows that without aspect, the program should work fine when read() is called once after close() has been performed (actually this happens because read() reads the '\n' remaining in the buffer).
+But this is the violation of the property and this violation is caught by the implemented aspect (in the file ReadClose.aj) and it throws ReaderHasBeenClosed exception.
+
+Test case 2: Second test case (see the comment 'Test Case 2 for Property 'ReaderClose'' in source) shows that without aspect, the program should fail (IOException is thrown). 
+But with aspects, ReaderHasBeenClosed exception gets thrown before calling read().
+
+Part 2: Validate the API claims about the performance of two operations of any collection.
+
+Operation 1: Getting the last element from a LinkedList instance. This operation takes constant time because in the implementation of LinkedList, 
+there are two pointers maintained: one to the start and one to the end. The output of this operation can be analyzed in the file LinkedListPerformance.txt.
+Please note that the time is in nanoseconds, hence the variation should be agreeable. (This experiment exposed the fact the implementation uses two pointers).
+
+Operation 2: Insertion in a TreeSet takes log(n) time. API claims that it should take log(n) time, but this remains non-verifiable.

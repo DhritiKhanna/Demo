@@ -8,7 +8,7 @@ public class ThisIsANewClass {
 		// TODO Auto-generated method stub
 		System.out.println("Hi");
 		System.out.println("Hi in commit 1");
-
+		System.out.println("Again in main branch");
 	}
 
 }
